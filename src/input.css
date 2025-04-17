@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Extra utility classes */
+@layer components{
+  .card{@apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700
+               rounded-lg p-4 flex flex-col justify-between transition;}
+  .chip{@apply inline-block px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700
+                 text-xs font-medium;}
+}
