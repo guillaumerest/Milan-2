@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Milan Restaurant Guide</title>
+
+  <!-- Tailwind – the purged & minified bundle you’ll build in step 4 -->
+  <link rel="stylesheet" href="dist/output.css">
+
+  <!-- Leaflet core -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Marker‑cluster plugin -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <script defer src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+  <!-- App logic -->
+  <script defer type="module" src="app.js"></script>
+
+  <!-- Custom CSS that isn’t purged by Tailwind -->
+  <style>
+    :root{
+      --bg-light:#ffffff;--bg-dark:#111827;
+      --text-light:#1f2937;--text-dark:#f9fafb;
+      --border-light:#e5e7eb;--border-dark:#374151;
+    }
+    body{transition:background .3s,color .3s;}
+    [data-theme="dark"]{background:var(--bg-dark);color:var(--text-dark);}
+    #map{height:450px;border:1px solid var(--border-light);}
+    [data-theme="dark"] #map{border-color:var(--border-dark);}
+    /* Hover micro‑interaction */
+    .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.07);}
+    .leaflet-marker-icon{transition:transform .2s;}
+    .leaflet-marker-icon:hover{transform:scale(1.15);}
+    /* Respect reduced‑motion */
+    @media (prefers-reduced-motion:reduce){
+      .card:hover,.leaflet-marker-icon:hover{transform:none;box-shadow:none;}
+    }
+  </style>
+</head>
+
+<body class="antialiased bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto p-6 flex items-center justify-between">
+    <h1 class="text-3xl font-bold">Milan Restaurant Guide</h1>
+    <button id="themeToggle" aria-label="Toggle dark mode"
+            class="p-2 rounded-md ring-offset-2 focus:ring">
+      <svg id="themeIcon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
+           fill="currentColor" viewBox="0 0 24 24"><path/></svg>
+    </button>
+  </header>
+
+  <!-- Content -->
+  <main class="max-w-7xl mx-auto p-6 space-y-8">
+    <!-- Filters -->
+    <section id="filters"
+             class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+    <!-- Map -->
+    <div id="map" class="rounded-lg"></div>
+
+    <!-- Restaurant list -->
+    <section id="list" aria-live="polite"></section>
+  </main>
+</body>
+</html>
